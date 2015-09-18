@@ -20,12 +20,182 @@
 
     <section class="main-content">
       <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
+<p>This document specifies how to interact with the Helden der Volksmusik platform, including how to request resources, authenticate and how to post data to the backend. All operations against the platform are done against a RESTful API and all resources are accessible via HTTPS only.</p>
 
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a id="conventions" class="anchor" href="#conventions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conventions</h3>
+
+<ul>
+<li>Unless expressed otherwise, all dates are expressed in number of milliseconds since January 1st, 1970 in GMT.</li>
+</ul>
+
+<h3>
+<a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources</h3>
+
+<h4>
+<a id="post" class="anchor" href="#post" aria-hidden="true"><span class="octicon octicon-link"></span></a>/post</h4>
+
+<p><em>Requires authentication: No</em>
+Return Array of JSON objects
+The post is the core of the platform and represents content uploaded by artists themselves.</p>
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content</td>
+<td>main content text of the post</td>
+</tr>
+<tr>
+<td>date_published</td>
+<td>date, expressed in milliseconds, when the post was first created</td>
+</tr>
+</tbody>
+</table>
+
+<p><em>Sample reply:</em></p>
+
+<pre><code>[
+    {
+        "content": "adsf",
+        "date_published": 1442473848399,
+        "liked_by": [
+            {
+                "userId": "cicg17uam0000n7kf3gvdnozt"
+            }
+        ],
+        "comments": [
+            {
+                "postId": "cienvoor30000sfpns52nxtg7",
+                "commentId": "ciepxhc3y0000rrpn6chjwep4",
+                "author": {
+                    "userId": "cicg17uam0000n7kf3gvdnozt",
+                    "displayName": "rock latino",
+                    "city": "san jose",
+                    "country": "Costa Rica",
+                    "role": "artist",
+                    "dateCreated": "1437645847171",
+                    "canopyPicture": "https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png",
+                    "selfie": "https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png",
+                    "identityProvider": "local",
+                    "facebookOptIn": false,
+                    "points": 0,
+                    "members": 2,
+                    "styles": [
+                        "Volksmusik"
+                    ],
+                    "managed": true,
+                    "recordManaged": true,
+                    "storeAGB": true
+                },
+                "content": "this is a comment",
+                "datePublished": 1442597797007
+            }
+        ],
+        "title": "asdf",
+        "likesCount": 1,
+        "commentsCount": 1,
+        "viewsCount": 0,
+        "media": {
+            "uri": "https://hdvdev.blob.core.windows.net/creatives/c28acfa5a2992242a4c82ddde1780cc8d29e.png",
+            "contentType": "image/png",
+            "poster": null,
+            "webm": "",
+            "mp3": ""
+        },
+        "styles": [
+            "volkstümlicher schlager"
+        ],
+        "category": "backstage",
+        "cuid": "cienvoor30000sfpns52nxtg7",
+        "authorId": "cicg17uam0000n7kf3gvdnozt",
+        "isHitParadeEligible": true,
+        "isEncoded": true,
+        "id": "226ce56a-0d74-4758-157d-2063afb6feaa",
+        "author": {
+            "userId": "cicg17uam0000n7kf3gvdnozt",
+            "displayName": "rock latino",
+            "city": "san jose",
+            "country": "Costa Rica",
+            "role": "artist",
+            "dateCreated": "1437645847171",
+            "isEmailConfirmed": false,
+            "canopyPicture": "https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png",
+            "selfie": "https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png",
+            "identityProvider": "local",
+            "facebookOptIn": false,
+            "points": 0,
+            "members": 2,
+            "styles": [
+                "Volksmusik"
+            ],
+            "creatorName": "luis delgado",
+            "managed": true,
+            "recordManaged": true,
+            "storeAGB": true
+        }
+    },
+    {
+        "content": "adsf",
+        "date_published": 1442410856548,
+        "liked_by": [
+            {
+                "userId": "cicg17uam0000n7kf3gvdnozt"
+            }
+        ],
+        "comments": [],
+        "title": "asdf",
+        "likesCount": 1,
+        "commentsCount": 0,
+        "viewsCount": 1,
+        "media": {
+            "uri": "https://hdvdev.blob.core.windows.net/creatives/8a2a75f3ca0ffc40caebfcb29bd1caed1b99.png",
+            "contentType": "image/png",
+            "poster": null,
+            "webm": "",
+            "mp3": ""
+        },
+        "styles": [
+            "volkstümliche musik"
+        ],
+        "category": "live",
+        "cuid": "ciemu6jxg0000n8pn4msktx56",
+        "authorId": "cicg17uam0000n7kf3gvdnozt",
+        "isHitParadeEligible": true,
+        "isEncoded": true,
+        "id": "06db7574-25b7-d1ae-b3d0-3b5fe754ff00",
+        "author": {
+            "userId": "cicg17uam0000n7kf3gvdnozt",
+            "displayName": "rock latino",
+            "city": "san jose",
+            "country": "Costa Rica",
+            "role": "artist",
+            "dateCreated": "1437645847171",
+            "isEmailConfirmed": false,
+            "canopyPicture": "https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png",
+            "selfie": "https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png",
+            "identityProvider": "local",
+            "facebookOptIn": false,
+            "points": 0,
+            "members": 2,
+            "styles": [
+                "Volksmusik"
+            ],
+            "creatorName": "luis delgado",
+            "managed": true,
+            "recordManaged": true,
+            "storeAGB": true
+        }
+    }
+]
+</code></pre>
 
 <p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
 
