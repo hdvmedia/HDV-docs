@@ -29,17 +29,20 @@
 
 <ul>
 <li>Unless expressed otherwise, all dates are expressed in number of milliseconds since January 1st, 1970 in GMT.</li>
+<li>Authentication and session preservation is handled by session cookies. Every HTTP request to the site will deliver you a session cookie. Make sure to attach this cookies to all your HTTP requests.</li>
+<li>All POST, PUT and DELETE HTTP operations (verbs) will require you to submit a csrf token. Use the endpoint <code>/token</code> to get one programatically. If you fail to submit a csrf token with these HTTP verbs, or submit an invalid one, you will receive an HTTP 500 error with data payload <code>EBADCSRFTOKEN</code>. If you get this error, we recommend you to get a csrf token by calling the <code>/token</code> endpoint and retry the operation.</li>
+<li>The preferred way to submit a csrf token with your request is to attach it to the url via que URL query <code>_csrf=</code>. You can also add it as a cookies with the name <code>x-csrf-token</code>.</li>
+<li>Some endpoints share the same url as some webpages. Therefore, in order to guarantee that you will received data (instead of an HTML response), we advise you to add the HTTP header <code>X-Requested-With: XMLHTTPRequest</code>to every request.</li>
+<li>The media endpoints that store video and audio files support streaming. When calling these files, expect to receive partial content responses (HTTP 206). That is, it is safe to start playback of such files immediately after your media player has buffered enough data.</li>
 </ul>
 
 <h3>
 <a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources</h3>
 
 <h4>
-<a id="post" class="anchor" href="#post" aria-hidden="true"><span class="octicon octicon-link"></span></a>/post</h4>
+<a id="post" class="anchor" href="#post" aria-hidden="true"><span class="octicon octicon-link"></span></a>Post</h4>
 
-<p><em>Requires authentication: No</em>
-Return Array of JSON objects
-The post is the core of the platform and represents content uploaded by artists themselves.</p>
+<p>The post is the core of the platform and represents content uploaded by artists themselves.</p>
 
 <table>
 <thead>
@@ -51,19 +54,87 @@ The post is the core of the platform and represents content uploaded by artists 
 <tbody>
 <tr>
 <td>content</td>
-<td>main content text of the post</td>
+<td>String. Main content text of the post</td>
 </tr>
 <tr>
 <td>date_published</td>
-<td>date, expressed in milliseconds, when the post was first created</td>
+<td>Int64. Date, expressed in milliseconds, when the post was created</td>
+</tr>
+<tr>
+<td>liked_by</td>
+<td>Array. List of userIds that have liked this post</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>Array. List of comment objects that have been written for this post. See Comment resource for details</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String. Title of the post, usually the title of the song</td>
+</tr>
+<tr>
+<td>likesCount</td>
+<td>in disuse</td>
+</tr>
+<tr>
+<td>commentsCount</td>
+<td>in disuse</td>
+</tr>
+<tr>
+<td>viewsCount</td>
+<td>total number of times the post has been viewed.</td>
+</tr>
+<tr>
+<td>media</td>
+<td>JSON. Information about the media assets associated with this post. See Media object for information</td>
 </tr>
 </tbody>
 </table>
 
-<p><em>Sample reply:</em></p>
+<pre><code>    "media": {
+        "uri": "https://hdvdev.blob.core.windows.net/creatives/c28acfa5a2992242a4c82ddde1780cc8d29e.png",
+        "contentType": "image/png",
+        "poster": null,
+        "webm": "",
+        "mp3": ""
+    },
+    "styles": [
+        "volkstümlicher schlager"
+    ],
+    "category": "backstage",
+    "cuid": "cienvoor30000sfpns52nxtg7",
+    "authorId": "cicg17uam0000n7kf3gvdnozt",
+    "isHitParadeEligible": true,
+    "isEncoded": true,
+    "id": "226ce56a-0d74-4758-157d-2063afb6feaa",
+    "author": {
+        "userId": "cicg17uam0000n7kf3gvdnozt",
+        "displayName": "rock latino",
+        "city": "san jose",
+        "country": "Costa Rica",
+        "role": "artist",
+        "dateCreated": "1437645847171",
+        "isEmailConfirmed": false,
+        "canopyPicture": "https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png",
+        "selfie": "https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png",
+        "identityProvider": "local",
+        "facebookOptIn": false,
+        "points": 0,
+        "members": 2,
+        "styles": [
+            "Volksmusik"
+        ],
+        "creatorName": "luis delgado",
+        "managed": true,
+        "recordManaged": true,
+        "storeAGB": true
+    }
+}
+</code></pre>
 
-<pre><code>[
-    {
+<p><em>Sample:</em></p>
+
+<pre><code>    {
         "content": "adsf",
         "date_published": 1442473848399,
         "liked_by": [
@@ -141,6 +212,116 @@ The post is the core of the platform and represents content uploaded by artists 
             "recordManaged": true,
             "storeAGB": true
         }
+    }
+
+#### Media
+The media object contains information about the media assets associated with a post.
+
+Property | Description
+-------- | -----------
+uri | String. Absolute uri to the file that contains the main media of the post
+
+        "media": {
+            "uri": "https://hdvdev.blob.core.windows.net/creatives/c28acfa5a2992242a4c82ddde1780cc8d29e.png",
+            "contentType": "image/png",
+            "poster": null,
+            "webm": "",
+            "mp3": ""
+        },
+
+#### /post
+_Requires authentication: No_
+Return Array of JSON objects
+The post is the core of the platform and represents content uploaded by artists themselves.
+
+Property | Description
+-------- | -----------
+content | main content text of the post
+date_published | date, expressed in milliseconds, when the post was first created
+
+
+_Sample reply:_
+</code></pre>
+
+<p>[
+    {
+        "content": "adsf",
+        "date_published": 1442473848399,
+        "liked_by": [
+            {
+                "userId": "cicg17uam0000n7kf3gvdnozt"
+            }
+        ],
+        "comments": [
+            {
+                "postId": "cienvoor30000sfpns52nxtg7",
+                "commentId": "ciepxhc3y0000rrpn6chjwep4",
+                "author": {
+                    "userId": "cicg17uam0000n7kf3gvdnozt",
+                    "displayName": "rock latino",
+                    "city": "san jose",
+                    "country": "Costa Rica",
+                    "role": "artist",
+                    "dateCreated": "1437645847171",
+                    "canopyPicture": "<a href="https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png">https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png</a>",
+                    "selfie": "<a href="https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png">https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png</a>",
+                    "identityProvider": "local",
+                    "facebookOptIn": false,
+                    "points": 0,
+                    "members": 2,
+                    "styles": [
+                        "Volksmusik"
+                    ],
+                    "managed": true,
+                    "recordManaged": true,
+                    "storeAGB": true
+                },
+                "content": "this is a comment",
+                "datePublished": 1442597797007
+            }
+        ],
+        "title": "asdf",
+        "likesCount": 1,
+        "commentsCount": 1,
+        "viewsCount": 0,
+        "media": {
+            "uri": "<a href="https://hdvdev.blob.core.windows.net/creatives/c28acfa5a2992242a4c82ddde1780cc8d29e.png">https://hdvdev.blob.core.windows.net/creatives/c28acfa5a2992242a4c82ddde1780cc8d29e.png</a>",
+            "contentType": "image/png",
+            "poster": null,
+            "webm": "",
+            "mp3": ""
+        },
+        "styles": [
+            "volkstümlicher schlager"
+        ],
+        "category": "backstage",
+        "cuid": "cienvoor30000sfpns52nxtg7",
+        "authorId": "cicg17uam0000n7kf3gvdnozt",
+        "isHitParadeEligible": true,
+        "isEncoded": true,
+        "id": "226ce56a-0d74-4758-157d-2063afb6feaa",
+        "author": {
+            "userId": "cicg17uam0000n7kf3gvdnozt",
+            "displayName": "rock latino",
+            "city": "san jose",
+            "country": "Costa Rica",
+            "role": "artist",
+            "dateCreated": "1437645847171",
+            "isEmailConfirmed": false,
+            "canopyPicture": "<a href="https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png">https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png</a>",
+            "selfie": "<a href="https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png">https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png</a>",
+            "identityProvider": "local",
+            "facebookOptIn": false,
+            "points": 0,
+            "members": 2,
+            "styles": [
+                "Volksmusik"
+            ],
+            "creatorName": "luis delgado",
+            "managed": true,
+            "recordManaged": true,
+            "storeAGB": true
+        }
     },
     {
         "content": "adsf",
@@ -156,7 +337,7 @@ The post is the core of the platform and represents content uploaded by artists 
         "commentsCount": 0,
         "viewsCount": 1,
         "media": {
-            "uri": "https://hdvdev.blob.core.windows.net/creatives/8a2a75f3ca0ffc40caebfcb29bd1caed1b99.png",
+            "uri": "<a href="https://hdvdev.blob.core.windows.net/creatives/8a2a75f3ca0ffc40caebfcb29bd1caed1b99.png">https://hdvdev.blob.core.windows.net/creatives/8a2a75f3ca0ffc40caebfcb29bd1caed1b99.png</a>",
             "contentType": "image/png",
             "poster": null,
             "webm": "",
@@ -179,8 +360,8 @@ The post is the core of the platform and represents content uploaded by artists 
             "role": "artist",
             "dateCreated": "1437645847171",
             "isEmailConfirmed": false,
-            "canopyPicture": "https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png",
-            "selfie": "https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png",
+            "canopyPicture": "<a href="https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png">https://hdvdev.blob.core.windows.net/profiles/cicg1cov500020ekfe5evafop.png</a>",
+            "selfie": "<a href="https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png">https://hdvdev.blob.core.windows.net/profiles/cicg1c85000010ekfl6rkmsiy.png</a>",
             "identityProvider": "local",
             "facebookOptIn": false,
             "points": 0,
@@ -194,25 +375,19 @@ The post is the core of the platform and represents content uploaded by artists 
             "storeAGB": true
         }
     }
-]
+]</p>
+
+<pre><code>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.
+
+### Creating pages manually
+If you prefer to not use the automatic generator, push a branch named `gh-pages` to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.
+
+### Authors and Contributors
+You can @mention a GitHub username to generate a link to their profile. The resulting `&lt;a&gt;` element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (@defunkt), PJ Hyett (@pjhyett), and Tom Preston-Werner (@mojombo) founded GitHub.
+
+### Support or Contact
+Having trouble with Pages? Check out our [documentation](https://help.github.com/pages) or [contact support](https://github.com/contact) and we’ll help you sort it out.
 </code></pre>
-
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
-
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating pages manually</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/hdvmedia/HDV-docs">Helden der Volksmusik</a> is maintained by <a href="https://github.com/hdvmedia">hdvmedia</a>.</span>
