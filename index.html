@@ -75,11 +75,11 @@
 </tr>
 <tr>
 <td>likesCount</td>
-<td>in disuse</td>
+<td>Int. Number of times the post has been liked.</td>
 </tr>
 <tr>
 <td>commentsCount</td>
-<td>in disuse</td>
+<td>Int. Number of times the post has been commented.</td>
 </tr>
 <tr>
 <td>viewsCount</td>
@@ -406,6 +406,115 @@
     "poster": "https://az726827.vo.msecnd.net/creatives/a586d5fb3a237e41633a65f8311209f8ef6e.jpg",
     "mp3": "https://az726827.vo.msecnd.net/creatives/a586d5fb3a237e41633a65f8311209f8ef6e.mp3",
     "webm": "https://az726827.vo.msecnd.net/creatives/a586d5fb3a237e41633a65f8311209f8ef6e_encoded.webm"
+}
+</code></pre>
+
+<h3>
+<a id="concert" class="anchor" href="#concert" aria-hidden="true"><span class="octicon octicon-link"></span></a>Concert</h3>
+
+<p>Provides information about an artist's concert</p>
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>author</td>
+<td>JSON. User information about the artist that submitted this concert</td>
+</tr>
+<tr>
+<td>media</td>
+<td>in disuse</td>
+</tr>
+<tr>
+<td>beginTimeShort</td>
+<td>String. Hour of the day, in hh:mm format, when the concert starts</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String. Currency to be used when displaying the price of the concert</td>
+</tr>
+<tr>
+<td>dateInMs</td>
+<td>Int64. Date, in milliseconds, when the concert will take place (day, month and year, defaults to 00:00 hours GMT)</td>
+</tr>
+<tr>
+<td>openTimeShort</td>
+<td>String. Hour, in hh:mm format, when the concert venue will be opened for the concert</td>
+</tr>
+<tr>
+<td>price</td>
+<td>Int(double). Price of the concert's ticket. If the artist specified a price with decimals, you will receive a Double value</td>
+</tr>
+<tr>
+<td>street</td>
+<td>String. Street address of the concert venue</td>
+</tr>
+<tr>
+<td>venue</td>
+<td>String. Name of the concert venue</td>
+</tr>
+<tr>
+<td>zipCode</td>
+<td>String. Postal code of the city where the concert will take place. Takes the format xx-####, where xx can be "D" or "DE", "AT" or "CH"</td>
+</tr>
+<tr>
+<td>artistId</td>
+<td>String. Unique ID of the artist that submitted the concert</td>
+</tr>
+<tr>
+<td><strong>id</strong></td>
+<td><strong>String. Unique ID of the concert's object</strong></td>
+</tr>
+<tr>
+<td>blobId</td>
+<td>String. Absolute uri of the poster image of the concert. Can be null</td>
+</tr>
+<tr>
+<td>uploadToStore</td>
+<td>Boolean. If true, it means that tickets for the concert are available for sell in the Helden der Volksmusik store</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code>{
+    "author": {
+        "userId": "ci4inrrhf0006owoi6if1jr17",
+        "displayName": "Hilander",
+        "city": "Feldkirch",
+        "country": "Österreich",
+        "role": "artist",
+        "dateCreated": "1420390400739",
+        "canopyPicture": null,
+        "selfie": "https://az726827.vo.msecnd.net/profiles/ciaqrinzw0001a4nwrodicsp3.png",
+        "identityProvider": "local",
+        "points": 400,
+        "members": 2,
+        "styles": [
+            "Volkstümliche Musik"
+        ],
+    },
+    "media": {
+        "streamingEndpoint": null
+    },
+    "beginTimeShort": "20:30",
+    "currency": "EUR",
+    "dateInMs": 1443218400000,
+    "openTimeShort": "18:00",
+    "price": 20,
+    "street": "Schlossangerstrasse 2",
+    "venue": "Gasthof Ismair, Türnthenning",
+    "zipCode": "D-84164",
+    "artistId": "ci4inrrhf0006owoi6if1jr17",
+    "id": "d8c70fb0-a395-4ea4-70ab-bb32758de79f",
+    "blobId": null,
+    "uploadToStore": false
 }
 </code></pre>
 
@@ -804,6 +913,491 @@ This endpoint is particularly useful for the radio feature on the iPhone app, as
 </code></pre>
 
 <h3>
+<a id="get-ranking" class="anchor" href="#get-ranking" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /ranking</h3>
+
+<p>Returns a JSON literal with information about the top posts of the month for our hit parade. The hit parade is divided into the following rankings:</p>
+
+<ul>
+<li>Hit Parade: includes the video most liked by the community</li>
+<li>Most commented: the most commented videos for the month</li>
+<li>Most views: the most viewed posts for the month</li>
+</ul>
+
+<p>Example</p>
+
+<pre><code>{
+    "mostLiked": [
+        {
+            "content": "*Unser brandneue Videoclip \"Wenn I mit mei'm Mad'l tanz\" - gefilmt wurde in Slowenien für Viel Spass!* www.alpenfever.be  -  www.facebook.com/AlpenFever \n*Onze nieuwste videoclip \"Wenn I mit mei'm Mad'l tanz\" - opgenomen in Slovenië ... Veel plezier!* www.alpenfever.be - www.facebook.com/AlpenFever",
+            "date_published": 1441093424752,
+            "liked_by": [],
+            "comments": [],
+            "title": "Wenn i mit mei'm Mad'l tanz - AlpenFever ",
+            "likesCount": 19,
+            "commentsCount": 22,
+            "viewsCount": 125,
+            "media": {
+                "uri": "https://az726827.vo.msecnd.net/creatives/819c90101d423643a3fa6dc717187aefcd62_encoded.mp4",
+                "contentType": "video/mp4",
+                "poster": "https://az726827.vo.msecnd.net/creatives/819c90101d423643a3fa6dc717187aefcd62.jpg",
+                "mp3": "819c90101d423643a3fa6dc717187aefcd62.mp3",
+                "webm": "819c90101d423643a3fa6dc717187aefcd62_encoded.webm"
+            },
+            "styles": [
+                "volkstümliche musik"
+            ],
+            "category": "video",
+            "cuid": "cie11tf1s0000akn6uoay3rkc",
+            "authorId": "ci77bfzei000clgolkj8jz2i6",
+            "isHitParadeEligible": true,
+            "isEncoded": true,
+            "id": "99d1ae14-b0ff-9202-5744-80d171a40ac5",
+            "_rid": "fMA4AKk8BgBBAAAAAAAAAA==",
+            "_ts": 1442776603,
+            "_self": "dbs/fMA4AA==/colls/fMA4AKk8BgA=/docs/fMA4AKk8BgBBAAAAAAAAAA==/",
+            "_etag": "\"00001700-0000-0000-0000-55ff061b0000\"",
+            "_attachments": "attachments/",
+            "author": {
+                "userId": "ci77bfzei000clgolkj8jz2i6",
+                "displayName": "AlpenFever",
+                "city": "Avelgem",
+                "country": "Belgien",
+                "role": "artist",
+                "dateCreated": 1426234915747,
+                "isEmailConfirmed": true,
+                "canopyPicture": null,
+                "selfie": "https://az726827.vo.msecnd.net/profiles/noProfilePic.png",
+                "identityProvider": "local",
+                "facebookOptIn": false,
+                "points": 0,
+                "members": 2,
+                "styles": [
+                    "Volksmusik",
+                    "Volkstümliche Musik",
+                    "Volkstümlicher Schlager"
+                ],
+                "creatorName": "Bart De Spiegelaere"
+            }
+        },
+        {
+            "content": "Viel vergnügen mit dem Steinmanndli aus der Schweiz!",
+            "date_published": 1441297532279,
+            "liked_by": [],
+            "comments": [],
+            "title": "Steimanndli-Rap",
+            "likesCount": 5,
+            "commentsCount": 5,
+            "viewsCount": 79,
+            "media": {
+                "uri": "https://az726827.vo.msecnd.net/creatives/2bfa00d353f3d04363e86ccc3483dd70da27_encoded.mp4",
+                "contentType": "video/mp4",
+                "poster": "https://az726827.vo.msecnd.net/creatives/2bfa00d353f3d04363e86ccc3483dd70da27.jpg",
+                "mp3": "2bfa00d353f3d04363e86ccc3483dd70da27.mp3",
+                "webm": "2bfa00d353f3d04363e86ccc3483dd70da27_encoded.webm"
+            },
+            "styles": [
+                "schlager"
+            ],
+            "category": "video",
+            "cuid": "cie4fc5fb0000ccn6t836vve9",
+            "authorId": "ci8rh2cuu0009l8nij2duuzmc",
+            "isHitParadeEligible": true,
+            "isEncoded": true,
+            "id": "de4094cb-2781-1024-ff69-337d918d0fbc",
+            "_rid": "fMA4AKk8BgBDAAAAAAAAAA==",
+            "_ts": 1442766722,
+            "_self": "dbs/fMA4AA==/colls/fMA4AKk8BgA=/docs/fMA4AKk8BgBDAAAAAAAAAA==/",
+            "_etag": "\"00001200-0000-0000-0000-55fedf820000\"",
+            "_attachments": "attachments/",
+            "author": {
+                "userId": "ci8rh2cuu0009l8nij2duuzmc",
+                "displayName": "Willy Tell",
+                "city": "Ruswil / Luzern",
+                "country": "Schweiz",
+                "role": "artist",
+                "dateCreated": 1429630463489,
+                "isEmailConfirmed": true,
+                "canopyPicture": null,
+                "selfie": "https://az726827.vo.msecnd.net/profiles/willy-cuid9988922.png",
+                "identityProvider": "local",
+                "facebookOptIn": false,
+                "points": 0,
+                "members": 2,
+                "styles": [
+                    "Volksmusik",
+                    "Volkstümliche Musik",
+                    "Volkstümlicher Schlager"
+                ],
+                "creatorName": "Willy Vogel"
+            }
+        },
+        {
+            "content": "Text: saBINE\r\nMusik: Walter Pöham, saBINE",
+            "date_published": 1441985224671,
+            "liked_by": [],
+            "comments": [],
+            "title": "Musik aus Österreich",
+            "likesCount": 5,
+            "commentsCount": 1,
+            "viewsCount": 44,
+            "media": {
+                "uri": "https://az726827.vo.msecnd.net/creatives/a586d5fb3a237e41633a65f8311209f8ef6e_encoded.mp4",
+                "contentType": "video/mp4",
+                "poster": "https://az726827.vo.msecnd.net/creatives/a586d5fb3a237e41633a65f8311209f8ef6e.jpg",
+                "mp3": "a586d5fb3a237e41633a65f8311209f8ef6e.mp3",
+                "webm": "a586d5fb3a237e41633a65f8311209f8ef6e_encoded.webm"
+            },
+            "styles": [
+                "volkstümliche musik"
+            ],
+            "category": "video",
+            "cuid": "ciefsrs9r0000twnm1zv9a9uc",
+            "authorId": "ci8jw7fef0000fgniese3cekv",
+            "isHitParadeEligible": true,
+            "isEncoded": true,
+            "id": "9d0141f0-6563-0bdb-a1f3-636e6261a8a2",
+            "_rid": "fMA4AKk8BgAzAQAAAAAAAA==",
+            "_ts": 1442677373,
+            "_self": "dbs/fMA4AA==/colls/fMA4AKk8BgA=/docs/fMA4AKk8BgAzAQAAAAAAAA==/",
+            "_etag": "\"00000500-0000-0000-0000-55fd827d0000\"",
+            "_attachments": "attachments/",
+            "author": {
+                "userId": "ci8jw7fef0000fgniese3cekv",
+                "displayName": "saBINE",
+                "city": "Oberösterreich",
+                "country": "Österreich",
+                "role": "artist",
+                "dateCreated": 1429172165008,
+                "isEmailConfirmed": true,
+                "canopyPicture": null,
+                "selfie": "https://az726827.vo.msecnd.net/profiles/cid0t8ib0000efso0akmlpjhd.png",
+                "identityProvider": "local",
+                "facebookOptIn": false,
+                "points": 0,
+                "members": 1,
+                "styles": [
+                    "Volkstümlicher Schlager"
+                ],
+                "creatorName": "Sabine Neumeister"
+            }
+        }
+    ],
+    "mostViewed": [
+        {
+            "content": "*Unser brandneue Videoclip \"Wenn I mit mei'm Mad'l tanz\" - gefilmt wurde in Slowenien für Viel Spass!* www.alpenfever.be  -  www.facebook.com/AlpenFever \n*Onze nieuwste videoclip \"Wenn I mit mei'm Mad'l tanz\" - opgenomen in Slovenië ... Veel plezier!* www.alpenfever.be - www.facebook.com/AlpenFever",
+            "date_published": 1441093424752,
+            "liked_by": [],
+            "comments": [],
+            "title": "Wenn i mit mei'm Mad'l tanz - AlpenFever ",
+            "likesCount": 19,
+            "commentsCount": 22,
+            "viewsCount": 125,
+            "media": {
+                "uri": "https://az726827.vo.msecnd.net/creatives/819c90101d423643a3fa6dc717187aefcd62_encoded.mp4",
+                "contentType": "video/mp4",
+                "poster": "https://az726827.vo.msecnd.net/creatives/819c90101d423643a3fa6dc717187aefcd62.jpg",
+                "mp3": "819c90101d423643a3fa6dc717187aefcd62.mp3",
+                "webm": "819c90101d423643a3fa6dc717187aefcd62_encoded.webm"
+            },
+            "styles": [
+                "volkstümliche musik"
+            ],
+            "category": "video",
+            "cuid": "cie11tf1s0000akn6uoay3rkc",
+            "authorId": "ci77bfzei000clgolkj8jz2i6",
+            "isHitParadeEligible": true,
+            "isEncoded": true,
+            "id": "99d1ae14-b0ff-9202-5744-80d171a40ac5",
+            "_rid": "fMA4AKk8BgBBAAAAAAAAAA==",
+            "_ts": 1442776603,
+            "_self": "dbs/fMA4AA==/colls/fMA4AKk8BgA=/docs/fMA4AKk8BgBBAAAAAAAAAA==/",
+            "_etag": "\"00001700-0000-0000-0000-55ff061b0000\"",
+            "_attachments": "attachments/",
+            "author": {
+                "userId": "ci77bfzei000clgolkj8jz2i6",
+                "displayName": "AlpenFever",
+                "city": "Avelgem",
+                "country": "Belgien",
+                "role": "artist",
+                "dateCreated": 1426234915747,
+                "isEmailConfirmed": true,
+                "canopyPicture": null,
+                "selfie": "https://az726827.vo.msecnd.net/profiles/noProfilePic.png",
+                "identityProvider": "local",
+                "facebookOptIn": false,
+                "points": 0,
+                "members": 2,
+                "styles": [
+                    "Volksmusik",
+                    "Volkstümliche Musik",
+                    "Volkstümlicher Schlager"
+                ],
+                "creatorName": "Bart De Spiegelaere"
+            }
+        },
+        {
+            "content": "Viel vergnügen mit dem Steinmanndli aus der Schweiz!",
+            "date_published": 1441297532279,
+            "liked_by": [],
+            "comments": [],
+            "title": "Steimanndli-Rap",
+            "likesCount": 5,
+            "commentsCount": 5,
+            "viewsCount": 79,
+            "media": {
+                "uri": "https://az726827.vo.msecnd.net/creatives/2bfa00d353f3d04363e86ccc3483dd70da27_encoded.mp4",
+                "contentType": "video/mp4",
+                "poster": "https://az726827.vo.msecnd.net/creatives/2bfa00d353f3d04363e86ccc3483dd70da27.jpg",
+                "mp3": "2bfa00d353f3d04363e86ccc3483dd70da27.mp3",
+                "webm": "2bfa00d353f3d04363e86ccc3483dd70da27_encoded.webm"
+            },
+            "styles": [
+                "schlager"
+            ],
+            "category": "video",
+            "cuid": "cie4fc5fb0000ccn6t836vve9",
+            "authorId": "ci8rh2cuu0009l8nij2duuzmc",
+            "isHitParadeEligible": true,
+            "isEncoded": true,
+            "id": "de4094cb-2781-1024-ff69-337d918d0fbc",
+            "_rid": "fMA4AKk8BgBDAAAAAAAAAA==",
+            "_ts": 1442766722,
+            "_self": "dbs/fMA4AA==/colls/fMA4AKk8BgA=/docs/fMA4AKk8BgBDAAAAAAAAAA==/",
+            "_etag": "\"00001200-0000-0000-0000-55fedf820000\"",
+            "_attachments": "attachments/",
+            "author": {
+                "userId": "ci8rh2cuu0009l8nij2duuzmc",
+                "displayName": "Willy Tell",
+                "city": "Ruswil / Luzern",
+                "country": "Schweiz",
+                "role": "artist",
+                "dateCreated": 1429630463489,
+                "isEmailConfirmed": true,
+                "canopyPicture": null,
+                "selfie": "https://az726827.vo.msecnd.net/profiles/willy-cuid9988922.png",
+                "identityProvider": "local",
+                "facebookOptIn": false,
+                "points": 0,
+                "members": 2,
+                "styles": [
+                    "Volksmusik",
+                    "Volkstümliche Musik",
+                    "Volkstümlicher Schlager"
+                ],
+                "creatorName": "Willy Vogel"
+            }
+        },
+        {
+            "content": "Text: saBINE\r\nMusik: Walter Pöham, saBINE",
+            "date_published": 1441985224671,
+            "liked_by": [],
+            "comments": [],
+            "title": "Musik aus Österreich",
+            "likesCount": 5,
+            "commentsCount": 1,
+            "viewsCount": 44,
+            "media": {
+                "uri": "https://az726827.vo.msecnd.net/creatives/a586d5fb3a237e41633a65f8311209f8ef6e_encoded.mp4",
+                "contentType": "video/mp4",
+                "poster": "https://az726827.vo.msecnd.net/creatives/a586d5fb3a237e41633a65f8311209f8ef6e.jpg",
+                "mp3": "a586d5fb3a237e41633a65f8311209f8ef6e.mp3",
+                "webm": "a586d5fb3a237e41633a65f8311209f8ef6e_encoded.webm"
+            },
+            "styles": [
+                "volkstümliche musik"
+            ],
+            "category": "video",
+            "cuid": "ciefsrs9r0000twnm1zv9a9uc",
+            "authorId": "ci8jw7fef0000fgniese3cekv",
+            "isHitParadeEligible": true,
+            "isEncoded": true,
+            "id": "9d0141f0-6563-0bdb-a1f3-636e6261a8a2",
+            "_rid": "fMA4AKk8BgAzAQAAAAAAAA==",
+            "_ts": 1442677373,
+            "_self": "dbs/fMA4AA==/colls/fMA4AKk8BgA=/docs/fMA4AKk8BgAzAQAAAAAAAA==/",
+            "_etag": "\"00000500-0000-0000-0000-55fd827d0000\"",
+            "_attachments": "attachments/",
+            "author": {
+                "userId": "ci8jw7fef0000fgniese3cekv",
+                "displayName": "saBINE",
+                "city": "Oberösterreich",
+                "country": "Österreich",
+                "role": "artist",
+                "dateCreated": 1429172165008,
+                "isEmailConfirmed": true,
+                "canopyPicture": null,
+                "selfie": "https://az726827.vo.msecnd.net/profiles/cid0t8ib0000efso0akmlpjhd.png",
+                "identityProvider": "local",
+                "facebookOptIn": false,
+                "points": 0,
+                "members": 1,
+                "styles": [
+                    "Volkstümlicher Schlager"
+                ],
+                "creatorName": "Sabine Neumeister"
+            }
+        }
+    ],
+    "mostCommented": [
+        {
+            "content": "*Unser brandneue Videoclip \"Wenn I mit mei'm Mad'l tanz\" - gefilmt wurde in Slowenien für Viel Spass!* www.alpenfever.be  -  www.facebook.com/AlpenFever \n*Onze nieuwste videoclip \"Wenn I mit mei'm Mad'l tanz\" - opgenomen in Slovenië ... Veel plezier!* www.alpenfever.be - www.facebook.com/AlpenFever",
+            "date_published": 1441093424752,
+            "liked_by": [],
+            "comments": [],
+            "title": "Wenn i mit mei'm Mad'l tanz - AlpenFever ",
+            "likesCount": 19,
+            "commentsCount": 22,
+            "viewsCount": 125,
+            "media": {
+                "uri": "https://az726827.vo.msecnd.net/creatives/819c90101d423643a3fa6dc717187aefcd62_encoded.mp4",
+                "contentType": "video/mp4",
+                "poster": "https://az726827.vo.msecnd.net/creatives/819c90101d423643a3fa6dc717187aefcd62.jpg",
+                "mp3": "819c90101d423643a3fa6dc717187aefcd62.mp3",
+                "webm": "819c90101d423643a3fa6dc717187aefcd62_encoded.webm"
+            },
+            "styles": [
+                "volkstümliche musik"
+            ],
+            "category": "video",
+            "cuid": "cie11tf1s0000akn6uoay3rkc",
+            "authorId": "ci77bfzei000clgolkj8jz2i6",
+            "isHitParadeEligible": true,
+            "isEncoded": true,
+            "id": "99d1ae14-b0ff-9202-5744-80d171a40ac5",
+            "_rid": "fMA4AKk8BgBBAAAAAAAAAA==",
+            "_ts": 1442776603,
+            "_self": "dbs/fMA4AA==/colls/fMA4AKk8BgA=/docs/fMA4AKk8BgBBAAAAAAAAAA==/",
+            "_etag": "\"00001700-0000-0000-0000-55ff061b0000\"",
+            "_attachments": "attachments/",
+            "author": {
+                "userId": "ci77bfzei000clgolkj8jz2i6",
+                "displayName": "AlpenFever",
+                "city": "Avelgem",
+                "country": "Belgien",
+                "role": "artist",
+                "dateCreated": 1426234915747,
+                "isEmailConfirmed": true,
+                "canopyPicture": null,
+                "selfie": "https://az726827.vo.msecnd.net/profiles/noProfilePic.png",
+                "identityProvider": "local",
+                "facebookOptIn": false,
+                "points": 0,
+                "members": 2,
+                "styles": [
+                    "Volksmusik",
+                    "Volkstümliche Musik",
+                    "Volkstümlicher Schlager"
+                ],
+                "creatorName": "Bart De Spiegelaere"
+            }
+        },
+        {
+            "content": "Viel vergnügen mit dem Steinmanndli aus der Schweiz!",
+            "date_published": 1441297532279,
+            "liked_by": [],
+            "comments": [],
+            "title": "Steimanndli-Rap",
+            "likesCount": 5,
+            "commentsCount": 5,
+            "viewsCount": 79,
+            "media": {
+                "uri": "https://az726827.vo.msecnd.net/creatives/2bfa00d353f3d04363e86ccc3483dd70da27_encoded.mp4",
+                "contentType": "video/mp4",
+                "poster": "https://az726827.vo.msecnd.net/creatives/2bfa00d353f3d04363e86ccc3483dd70da27.jpg",
+                "mp3": "2bfa00d353f3d04363e86ccc3483dd70da27.mp3",
+                "webm": "2bfa00d353f3d04363e86ccc3483dd70da27_encoded.webm"
+            },
+            "styles": [
+                "schlager"
+            ],
+            "category": "video",
+            "cuid": "cie4fc5fb0000ccn6t836vve9",
+            "authorId": "ci8rh2cuu0009l8nij2duuzmc",
+            "isHitParadeEligible": true,
+            "isEncoded": true,
+            "id": "de4094cb-2781-1024-ff69-337d918d0fbc",
+            "_rid": "fMA4AKk8BgBDAAAAAAAAAA==",
+            "_ts": 1442766722,
+            "_self": "dbs/fMA4AA==/colls/fMA4AKk8BgA=/docs/fMA4AKk8BgBDAAAAAAAAAA==/",
+            "_etag": "\"00001200-0000-0000-0000-55fedf820000\"",
+            "_attachments": "attachments/",
+            "author": {
+                "userId": "ci8rh2cuu0009l8nij2duuzmc",
+                "displayName": "Willy Tell",
+                "city": "Ruswil / Luzern",
+                "country": "Schweiz",
+                "role": "artist",
+                "dateCreated": 1429630463489,
+                "isEmailConfirmed": true,
+                "canopyPicture": null,
+                "selfie": "https://az726827.vo.msecnd.net/profiles/willy-cuid9988922.png",
+                "identityProvider": "local",
+                "facebookOptIn": false,
+                "points": 0,
+                "members": 2,
+                "styles": [
+                    "Volksmusik",
+                    "Volkstümliche Musik",
+                    "Volkstümlicher Schlager"
+                ],
+                "creatorName": "Willy Vogel"
+            }
+        },
+        {
+            "content": "Text: saBINE\r\nMusik: Walter Pöham, saBINE",
+            "date_published": 1441985224671,
+            "liked_by": [],
+            "comments": [],
+            "title": "Musik aus Österreich",
+            "likesCount": 5,
+            "commentsCount": 1,
+            "viewsCount": 44,
+            "media": {
+                "uri": "https://az726827.vo.msecnd.net/creatives/a586d5fb3a237e41633a65f8311209f8ef6e_encoded.mp4",
+                "contentType": "video/mp4",
+                "poster": "https://az726827.vo.msecnd.net/creatives/a586d5fb3a237e41633a65f8311209f8ef6e.jpg",
+                "mp3": "a586d5fb3a237e41633a65f8311209f8ef6e.mp3",
+                "webm": "a586d5fb3a237e41633a65f8311209f8ef6e_encoded.webm"
+            },
+            "styles": [
+                "volkstümliche musik"
+            ],
+            "category": "video",
+            "cuid": "ciefsrs9r0000twnm1zv9a9uc",
+            "authorId": "ci8jw7fef0000fgniese3cekv",
+            "isHitParadeEligible": true,
+            "isEncoded": true,
+            "id": "9d0141f0-6563-0bdb-a1f3-636e6261a8a2",
+            "_rid": "fMA4AKk8BgAzAQAAAAAAAA==",
+            "_ts": 1442677373,
+            "_self": "dbs/fMA4AA==/colls/fMA4AKk8BgA=/docs/fMA4AKk8BgAzAQAAAAAAAA==/",
+            "_etag": "\"00000500-0000-0000-0000-55fd827d0000\"",
+            "_attachments": "attachments/",
+            "author": {
+                "userId": "ci8jw7fef0000fgniese3cekv",
+                "displayName": "saBINE",
+                "city": "Oberösterreich",
+                "country": "Österreich",
+                "role": "artist",
+                "dateCreated": 1429172165008,
+                "isEmailConfirmed": true,
+                "canopyPicture": null,
+                "selfie": "https://az726827.vo.msecnd.net/profiles/cid0t8ib0000efso0akmlpjhd.png",
+                "identityProvider": "local",
+                "facebookOptIn": false,
+                "points": 0,
+                "members": 1,
+                "styles": [
+                    "Volkstümlicher Schlager"
+                ],
+                "creatorName": "Sabine Neumeister"
+            }
+        }
+    ]
+}
+</code></pre>
+
+<h3>
 <a id="get-postpostidlikes" class="anchor" href="#get-postpostidlikes" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /post/[postId]/likes</h3>
 
 <p>Returns an array with all likes that belong to a specific post. </p>
@@ -865,22 +1459,47 @@ This endpoint is particularly useful for the radio feature on the iPhone app, as
 ]
 </code></pre>
 
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
+<h3>
+<a id="get-concert" class="anchor" href="#get-concert" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /concert</h3>
+
+<p>Returns an array of Concert objects, ordered based on property <code>dateInMs</code> (from the earliest one to the latest one). Currently, it does not provide pagination.</p>
 
 <h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating pages manually</h3>
+<a id="get-concertconcertid" class="anchor" href="#get-concertconcertid" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /concert/[concertId]</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>Return a concert object with information about the requested concert.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>concertId</td>
+<td>Unique ID of the concert requested</td>
+</tr>
+</tbody>
+</table>
 
 <h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a id="get-sas" class="anchor" href="#get-sas" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /sas</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p><strong>Requires authentication</strong>
+This endpoint will return a Shared Access Signature token. This token is required when posting media assets to our blob storage endpoint. These token has a validity of up to 15 minutes, so your application must control for expired tokens and request a new one if needed.</p>
+
+<p>Example token
+<code>"se=2015-09-20T23%3A07%3A53Z&amp;sp=w&amp;sv=2014-02-14&amp;sr=c&amp;sig=8SF5CMT5%2F5xRmIiDIF3J7q5LUx90gL9ftFPIMHQcXvw%3D"</code></p>
 
 <h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a id="get-token" class="anchor" href="#get-token" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /token</h3>
 
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<p>Retrieves a CSRF token. This endpoint will respond with a cookie named <code>x-csrf-token</code>. Store its value, as this is the corresponding csrf token for the sessionID with which you are connecting</p>
+
+<p>Example
+<code>Set-Cookie: x-csrf-token=rrJuk1Xp-mCCExnSHPIbVG1z5T5xjSwZIjms; path=/; httponly</code></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/hdvmedia/HDV-docs">Helden der Volksmusik</a> is maintained by <a href="https://github.com/hdvmedia">hdvmedia</a>.</span>
