@@ -219,6 +219,71 @@
 <h3>
 <a id="user" class="anchor" href="#user" aria-hidden="true"><span class="octicon octicon-link"></span></a>User</h3>
 
+<p>Provides information about a user</p>
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>String. Unique ID of the user object in the platform</td>
+</tr>
+<tr>
+<td>displayName</td>
+<td>String. Name to be used as display string. We encourage you to use this value, instead of concatenating properties to build the name yourself</td>
+</tr>
+<tr>
+<td>city</td>
+<td>String. Name of the user's city</td>
+</tr>
+<tr>
+<td>country</td>
+<td>String. Name of the user's country</td>
+</tr>
+<tr>
+<td>role</td>
+<td>String. Specifies where the user is an artist or a fan</td>
+</tr>
+<tr>
+<td>dateCreated</td>
+<td>Int64. Date, in milliseconds, when the user registered in the platform</td>
+</tr>
+<tr>
+<td>canopyPicture</td>
+<td>String. Absolute uri of the user's canopy picture</td>
+</tr>
+<tr>
+<td>selfie</td>
+<td>String. Absolute uri of the user's profile picture</td>
+</tr>
+<tr>
+<td>identityProvider</td>
+<td>String. If the value is <code>local</code>, it means the user has registered with own email address and password. Otherwise, specifies the social network with which the user registered (for example, Facebook)</td>
+</tr>
+<tr>
+<td>identityProviderId</td>
+<td>String. If the user registered via a social network, this property specifies the unique userId provided by the social network for the Helden app</td>
+</tr>
+<tr>
+<td>points</td>
+<td>Int. Specifies the number of points the user has accumulated in the platform</td>
+</tr>
+<tr>
+<td>givenName</td>
+<td>String. Given name of the user</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>String. Last name (family name) of the user</td>
+</tr>
+</tbody>
+</table>
+
 <pre><code>_Sample_:
 {
     "userId": "ci8ketimi000jdcni8lpbpy86",
@@ -230,10 +295,70 @@
     "canopyPicture": null,
     "selfie": "https: //az726827.vo.msecnd.net/profiles/noProfilePic.png",
     "identityProvider": "local",
-    "facebookOptIn": false,
     "points": 0,
     "givenName": "Richard",
     "lastName": "Dregennus"
+}
+</code></pre>
+
+<h3>
+<a id="comment" class="anchor" href="#comment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comment</h3>
+
+<p>The comment object contains information about a comment given out by a user or artist to an existing post. Comments will always be attached to a post.  </p>
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>postId</td>
+<td>String. Unique ID of the post object for which this comment was written</td>
+</tr>
+<tr>
+<td>commentId</td>
+<td>String. Unique ID for the comment</td>
+</tr>
+<tr>
+<td>author</td>
+<td>JSON. Information about the user that wrote the comment</td>
+</tr>
+<tr>
+<td>content</td>
+<td>String. The actual content of the comment</td>
+</tr>
+<tr>
+<td>datePublished</td>
+<td>Int64. Date, in milliseconds, when the comment was submitted</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code>{
+    "postId": "ci8kbrnoz0001dcnig3cqlr36",
+    "commentId": "ci8kf0uks000ldcni17vyr9sf",
+    "author": {
+        "userId": "ci8ketimi000jdcni8lpbpy86",
+        "displayName": "Richard Dregennus",
+        "city": "wehr",
+        "country": "Deutschland",
+        "role": "fan",
+        "dateCreated": 1429203428612,
+        "canopyPicture": null,
+        "selfie": "https://az726827.vo.msecnd.net/profiles/noProfilePic.png",
+        "identityProvider": "local",
+        "facebookOptIn": false,
+        "points": 0,
+        "givenName": "Richard",
+        "lastName": "Dregennus"
+    },
+    "content": "a gelungene CD.",
+    "datePublished": 1429203769804
 }
 </code></pre>
 
@@ -609,6 +734,136 @@ This endpoint will return up to 5 Posts, order from newest to oldest (as specifi
 
 <p>Returns a random Post object
 This endpoint is particularly useful for the radio feature on the iPhone app, as the radio offers the user playback of random songs. Use this endpoint to get a random Post from our entire catalog</p>
+
+<h3>
+<a id="get-postpostidcomments" class="anchor" href="#get-postpostidcomments" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /post/[postId]/comments/</h3>
+
+<p>Returns an array with all comments that belong to a specific post. See Comment object model for further details</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>postId</td>
+<td>Unique ID of the post to be requested. This corresponds to the value of property <code>cuid</code> of the post object.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Sample response:</p>
+
+<pre><code>[
+    {
+        "postId": "ci8kbrnoz0001dcnig3cqlr36",
+        "commentId": "ci8kf0uks000ldcni17vyr9sf",
+        "author": {
+            "userId": "ci8ketimi000jdcni8lpbpy86",
+            "displayName": "Richard Dregennus",
+            "city": "wehr",
+            "country": "Deutschland",
+            "role": "fan",
+            "dateCreated": 1429203428612,
+            "canopyPicture": null,
+            "selfie": "https://az726827.vo.msecnd.net/profiles/noProfilePic.png",
+            "identityProvider": "local",
+            "facebookOptIn": false,
+            "points": 0,
+            "givenName": "Richard",
+            "lastName": "Dregennus"
+        },
+        "content": "a gelungene CD.",
+        "datePublished": 1429203769804
+    },
+    {
+        "postId": "ci8kbrnoz0001dcnig3cqlr36",
+        "commentId": "ci8kfj1we000mdcni42f2k0gt",
+        "author": {
+            "userId": "ci6sb0keo0000k0nehn5g8w3o",
+            "displayName": "Luis Delgado",
+            "city": "Wintertur",
+            "country": "Schweiz",
+            "role": "fan",
+            "dateCreated": 1425327203739,
+            "canopyPicture": "https://az726827.vo.msecnd.net/profiles/cianwvutl0000hwnmbeknpbl5.png",
+            "selfie": "https://az726827.vo.msecnd.net/profiles/ciantb9py0000m0nm53ey0h92.png",
+            "identityProvider": "local",
+            "facebookOptIn": false,
+            "points": 310,
+            "givenName": "Luis",
+            "lastName": "Delgado"
+        },
+        "content": "Sehr gut gelungen, dieses Lied! Gefällt mir",
+        "datePublished": 1429204619102
+    }
+]
+</code></pre>
+
+<h3>
+<a id="get-postpostidlikes" class="anchor" href="#get-postpostidlikes" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /post/[postId]/likes</h3>
+
+<p>Returns an array with all likes that belong to a specific post. </p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>postId</td>
+<td>Unique ID of the post to be requested. This corresponds to the value of property <code>cuid</code> of the post object.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Sample response:</p>
+
+<pre><code>[
+    {
+        "userId": "ci2wxmpxh0000owmuxlevqnia",
+        "displayName": "Hilander",
+        "city": "Feldkrich",
+        "country": "Österreich",
+        "role": "artist",
+        "dateCreated": "1425589135247",
+        "isEmailConfirmed": true,
+        "canopyPicture": null,
+        "selfie": "https://az726827.vo.msecnd.net/profiles/cie1pp324000224n6ts4vo80m.png",
+        "identityProvider": "local",
+        "facebookOptIn": false,
+        "points": 10,
+        "members": 2,
+        "styles": [
+            "Volkstümlicher Schlager"
+        ],
+        "creatorName": "Christian Torchiani",
+    },
+    {
+        "userId": "ci6sb0keo0000k0nehn5g8w3o",
+        "displayName": "Luis Delgado",
+        "city": "Wintertur",
+        "country": "Schweiz",
+        "role": "fan",
+        "dateCreated": 1425327203739,
+        "isEmailConfirmed": true,
+        "canopyPicture": "https://az726827.vo.msecnd.net/profiles/cianwvutl0000hwnmbeknpbl5.png",
+        "selfie": "https://az726827.vo.msecnd.net/profiles/ciantb9py0000m0nm53ey0h92.png",
+        "identityProvider": "local",
+        "facebookOptIn": false,
+        "points": 310,
+        "givenName": "Luis",
+        "lastName": "Delgado",
+        "gender": "male"
+    }
+]
+</code></pre>
 
 <p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
 
