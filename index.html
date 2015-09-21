@@ -1464,6 +1464,82 @@ This endpoint is particularly useful for the radio feature on the iPhone app, as
 
 <p>Returns an array of Concert objects, ordered based on property <code>dateInMs</code> (from the earliest one to the latest one). Currently, it does not provide pagination.</p>
 
+<p>Sample:</p>
+
+<pre><code>[
+    {
+        "author": {
+            "userId": "ci4inrrhf0006owoi6if1jr17",
+            "displayName": "Hilander",
+            "city": "Feldkirch",
+            "country": "Österreich",
+            "role": "artist",
+            "dateCreated": "1420390400739",
+            "canopyPicture": null,
+            "selfie": "https://az726827.vo.msecnd.net/profiles/ciaqrinzw0001a4nwrodicsp3.png",
+            "identityProvider": "local",
+            "facebookOptIn": false,
+            "points": 400,
+            "members": 2,
+            "styles": [
+                "Volkstümliche Musik"
+            ]
+        },
+        "media": {
+            "streamingEndpoint": null
+        },
+        "beginTimeShort": "20:30",
+        "currency": "EUR",
+        "dateInMs": 1443218400000,
+        "openTimeShort": "18:00",
+        "price": 20,
+        "street": "Schlossangerstrasse 2",
+        "venue": "Gasthof Ismair, Türnthenning",
+        "zipCode": "D-84164",
+        "artistId": "ci4inrrhf0006owoi6if1jr17",
+        "id": "d8c70fb0-a395-4ea4-70ab-bb32758de79f",
+        "blobId": null,
+        "uploadToStore": false,
+        "artistDisplayName": null
+    },
+    {
+        "author": {
+            "userId": "ci4inrrhf0006owoi6if1jr17",
+            "displayName": "Hilander",
+            "city": "Feldkirch",
+            "country": "Österreich",
+            "role": "artist",
+            "dateCreated": "1420390400739",
+            "canopyPicture": null,
+            "selfie": "https://az726827.vo.msecnd.net/profiles/ciaqrinzw0001a4nwrodicsp3.png",
+            "identityProvider": "local",
+            "facebookOptIn": false,
+            "points": 400,
+            "members": 2,
+            "styles": [
+                "Volkstümliche Musik"
+            ],
+        },
+        "media": {
+            "streamingEndpoint": null
+        },
+        "beginTimeShort": "21:00",
+        "currency": "EUR",
+        "dateInMs": 1444428000000,
+        "openTimeShort": "19:30",
+        "price": 15,
+        "street": "Friedenbachstrasse 7",
+        "venue": "Hochalm, Weilburg",
+        "zipCode": "D-35781",
+        "artistId": "ci4inrrhf0006owoi6if1jr17",
+        "id": "9119a7ed-3241-546b-edc9-774703439de3",
+        "blobId": "ci4inrrhf0006owoi6if1jr17/CD_Hilander.jpg",
+        "uploadToStore": false,
+        "artistDisplayName": "Hilander"
+    }
+]
+</code></pre>
+
 <h3>
 <a id="get-concertconcertid" class="anchor" href="#get-concertconcertid" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /concert/[concertId]</h3>
 
@@ -1484,6 +1560,184 @@ This endpoint is particularly useful for the radio feature on the iPhone app, as
 </tbody>
 </table>
 
+<pre><code>{
+    "author": {
+        "userId": "ci4inrrhf0006owoi6if1jr17",
+        "displayName": "Hilander",
+        "city": "Feldkirch",
+        "country": "Österreich",
+        "role": "artist",
+        "dateCreated": "1420390400739",
+        "canopyPicture": null,
+        "selfie": "https://az726827.vo.msecnd.net/profiles/ciaqrinzw0001a4nwrodicsp3.png",
+        "identityProvider": "local",
+        "facebookOptIn": false,
+        "points": 400,
+        "members": 2,
+        "styles": [
+            "Volkstümliche Musik"
+        ]
+    },
+    "media": {
+        "streamingEndpoint": null
+    },
+    "beginTimeShort": "21:00",
+    "currency": "EUR",
+    "dateInMs": 1444428000000,
+    "openTimeShort": "19:30",
+    "price": 15,
+    "street": "Friedenbachstrasse 7",
+    "venue": "Hochalm, Weilburg",
+    "zipCode": "D-35781",
+    "artistId": "ci4inrrhf0006owoi6if1jr17",
+    "id": "9119a7ed-3241-546b-edc9-774703439de3",
+    "blobId": "ci4inrrhf0006owoi6if1jr17/CD_Hilander.jpg",
+    "uploadToStore": false,
+    "artistDisplayName": "Hilander"
+}
+</code></pre>
+
+<h3>
+<a id="get-useruserid" class="anchor" href="#get-useruserid" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /user/[userId]</h3>
+
+<p><strong>Requires authentication</strong>
+This endpoint will return information about a user</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>Unique ID of the user</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>{
+    "userId": "ci2wxmpxh0000owmuxlevqnia",
+    "displayName": "Hilander",
+    "city": "Feldkrich",
+    "country": "Österreich",
+    "role": "artist",
+    "dateCreated": "1425589135247",
+    "isEmailConfirmed": true,
+    "canopyPicture": null,
+    "selfie": "https://az726827.vo.msecnd.net/profiles/cie1pp324000224n6ts4vo80m.png",
+    "identityProvider": "local",
+    "facebookOptIn": false,
+    "points": 10,
+    "members": 2,
+    "styles": [
+        "Volkstümlicher Schlager"
+    ],
+    "creatorName": "Christian Torchiani",
+}
+</code></pre>
+
+<h3>
+<a id="get-useruseridposts" class="anchor" href="#get-useruseridposts" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /user/[userId]/posts</h3>
+
+<p>Returns an array with the posts uploaded by this user</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>Unique ID of the user</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>[
+    {
+        "content": "Damit sind alle unsere Fans gemeint. Ihr seid die Besten!",
+        "date_published": 1441132849981,
+        "liked_by": [],
+        "comments": [],
+        "title": "Du bist einfach ´ne Wucht",
+        "likesCount": 13,
+        "commentsCount": 3,
+        "viewsCount": 90,
+        "media": {
+            "uri": "https://az726827.vo.msecnd.net/creatives/7e25a1c04925f045e1c9a3f33a8b49877034_encoded.mp4",
+            "contentType": "video/mp4",
+            "poster": "https://az726827.vo.msecnd.net/creatives/7e25a1c04925f045e1c9a3f33a8b49877034.jpg",
+            "mp3": "7e25a1c04925f045e1c9a3f33a8b49877034.mp3",
+            "webm": "https://az726827.vo.msecnd.net/creatives/7e25a1c04925f045e1c9a3f33a8b49877034_encoded.webm"
+        },
+        "styles": [
+            "volkstümlicher schlager"
+        ],
+        "category": "video",
+        "cuid": "cie1pafr1000024n6rtbh4itz",
+        "authorId": "ci2wxmpxh0000owmuxlevqnia",
+        "isHitParadeEligible": false,
+        "isEncoded": true,
+        "id": "062fd240-835b-b6d1-4716-b0d79cba27f5",
+        "_rid": "fMA4AKk8BgBCAAAAAAAAAA==",
+        "_ts": 1442772333,
+        "_self": "dbs/fMA4AA==/colls/fMA4AKk8BgA=/docs/fMA4AKk8BgBCAAAAAAAAAA==/",
+        "_etag": "\"00001600-0000-0000-0000-55fef56d0000\"",
+        "_attachments": "attachments/"
+    }
+]
+</code></pre>
+
+<h3>
+<a id="post-userartist" class="anchor" href="#post-userartist" aria-hidden="true"><span class="octicon octicon-link"></span></a>POST /user/artist</h3>
+
+<p>Use this endpoint to create a new artist in our database. This endpoint accepts a JSON literal with the following syntax:</p>
+
+<pre><code>{
+    "creatorName": "Ruben Paredes",
+    "email": "swing@latino.com",
+    "displayName": "Swing Criollo",
+    "members": 2,
+    "country": "Argentinien",
+    "city": "Buenos Aires",
+    "managed": true,
+    "recordManaged": true,
+    "password": "123123123",
+    "passwordRepeat": "123123123",
+    "styles": [
+        "Schlager",
+        "Volksmusik"
+    ]
+}
+</code></pre>
+
+<p>Upon successful creation of an artist, the backend will consider your sessionId to be logged in. You do not need to ask the user for login after registration.</p>
+
+<h3>
+<a id="post-userfan" class="anchor" href="#post-userfan" aria-hidden="true"><span class="octicon octicon-link"></span></a>POST /user/fan</h3>
+
+<p>Use this endpoint to create a new fan in our database. This endpoint accepts a JSON literal with the following syntax:</p>
+
+<pre><code>{
+    "email": "ursula@meier.at",
+    "givenName": "Ursula",
+    "lastName": "Meier",
+    "country": "Österreich",
+    "city": "Feldkirch",
+    "password": "123123123",
+    "passwordRepeat": "123123123",
+    "gender": "female"
+}
+</code></pre>
+
+<p>Upon successful creation of a fan, the backend will consider your sessionId to be logged in. You do not need to ask the user for login after registration.</p>
+
 <h3>
 <a id="get-sas" class="anchor" href="#get-sas" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /sas</h3>
 
@@ -1497,6 +1751,13 @@ This endpoint will return a Shared Access Signature token. This token is require
 <a id="get-token" class="anchor" href="#get-token" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /token</h3>
 
 <p>Retrieves a CSRF token. This endpoint will respond with a cookie named <code>x-csrf-token</code>. Store its value, as this is the corresponding csrf token for the sessionID with which you are connecting</p>
+
+<h3>
+<a id="get-search" class="anchor" href="#get-search" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /search</h3>
+
+<p>This endpoint will deliver a read-only API Key for our search service. Use this API to perform a search on our search provider. If you do not provide this API key to the search provider, you will receive an HTTP 403 error. The data payload will contain the API key.</p>
+
+<p>Sample key: <code>"C01512F72E1353042C8FEB33DB9E7929"</code></p>
 
 <p>Example
 <code>Set-Cookie: x-csrf-token=rrJuk1Xp-mCCExnSHPIbVG1z5T5xjSwZIjms; path=/; httponly</code></p>
