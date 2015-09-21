@@ -1460,6 +1460,50 @@ This endpoint is particularly useful for the radio feature on the iPhone app, as
 </code></pre>
 
 <h3>
+<a id="post-postpostidlikes" class="anchor" href="#post-postpostidlikes" aria-hidden="true"><span class="octicon octicon-link"></span></a>POST /post/[postId]/likes</h3>
+
+<p><strong>Requires authentication</strong>
+Use this endpoint to like or unlike a post. You do not need to provide a payload for this endpoint.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>postId</td>
+<td>Unique ID of the post to be requested. This corresponds to the value of property <code>cuid</code> of the post object.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="post-postpostidcomments" class="anchor" href="#post-postpostidcomments" aria-hidden="true"><span class="octicon octicon-link"></span></a>POST /post/[postId]/comments</h3>
+
+<p><strong>Requires authentication</strong>
+Use this endpoint to submit a comment for a post. This endpoint expects a JSON literal with the following syntax:</p>
+
+<pre><code>{"content":"this is the content of a comment"}
+</code></pre>
+
+<h3>
+<a id="post-postpostidviews" class="anchor" href="#post-postpostidviews" aria-hidden="true"><span class="octicon octicon-link"></span></a>POST /post/[postId]/views</h3>
+
+<p>Use this endpoint to notify the API when the user starts viewing a post. This endpoint does not expect any data payload</p>
+
+<h3>
+<a id="post-postpostidshare" class="anchor" href="#post-postpostidshare" aria-hidden="true"><span class="octicon octicon-link"></span></a>POST /post/[postId]/share</h3>
+
+<p><strong>Requires authentication</strong>
+Use this endpoint to notify the API when a user has shared content on social networks. This endpoint expects a JSON literal with the following syntax:</p>
+
+<pre><code>{"content":"this is the content of a comment"}
+</code></pre>
+
+<h3>
 <a id="get-concert" class="anchor" href="#get-concert" aria-hidden="true"><span class="octicon octicon-link"></span></a>GET /concert</h3>
 
 <p>Returns an array of Concert objects, ordered based on property <code>dateInMs</code> (from the earliest one to the latest one). Currently, it does not provide pagination.</p>
